@@ -1,0 +1,26 @@
+{
+  "name": "prueba_tecnica_api_fechas_habiles_colombia",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AndresRojo12/Prueba_tecnica_API_fechas_habiles_Colombia.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/AndresRojo12/Prueba_tecnica_API_fechas_habiles_Colombia/issues"
+  },
+  "homepage": "https://github.com/AndresRojo12/Prueba_tecnica_API_fechas_habiles_Colombia#readme",
+  "dependencies": {
+    "axios": "^1.13.0",
+    "express": "^5.1.0",
+    "luxon": "^3.7.2"
+  }
+}
