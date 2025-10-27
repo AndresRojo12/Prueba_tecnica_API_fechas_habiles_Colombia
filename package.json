@@ -24,6 +24,7 @@
   "homepage": "https://github.com/AndresRojo12/Prueba_tecnica_API_fechas_habiles_Colombia#readme",
   "dependencies": {
     "axios": "^1.13.0",
+    "dotenv": "^17.2.3",
     "express": "^5.1.0",
     "luxon": "^3.7.2",
     "nodemon": "^3.1.10"
