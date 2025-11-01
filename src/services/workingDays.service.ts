@@ -1,31 +1,33 @@
-// src/services/workingDays.service.ts
+// luxon para manejo de fechas y zonas horarias
 import { DateTime } from 'luxon';
+// Función para obtener festivos colombianos
 import { getColombianHolidays } from '../utils/holidays.js';
 
-const TIMEZONE = 'America/Bogota';
-const WORK_START = 8;
-const LUNCH_START = 12;
-const LUNCH_END = 13;
-const WORK_END = 17;
+//Definición de constantes principales de horario laboral en Colombia
+const TIMEZONE = 'America/Bogota';// zona horaria de Colombia
+const WORK_START = 8;// inicio jornada laboral
+const LUNCH_START = 12;// inicio almuerzo
+const LUNCH_END = 13; // fin almuerzo
+const WORK_END = 17;  // fin jornada laboral
 
-/**
- * startUtc: DateTime parsed in controller as UTC
- * days, hours: numbers >= 0
- * returns DateTime in UTC
- */
+// función principal para calcular la siguiente fecha laboral
 export async function calculateNextWorkingDate(
-  startUtc: DateTime,
-  days: number = 0,
-  hours: number = 0
+  date: DateTime,// fecha inicial
+  days: number = 0,// días hábiles a sumar
+  hours: number = 0 // horas hábiles a sumar
 ): Promise<DateTime> {
   // Simular un error
  // throw new Error('Error simulado del servicio')
+
+ // se mapean los festivos colombianos
   const holidays = await getColombianHolidays();
 
-  // 1) Convertir a hora local de Colombia
-  let current = startUtc.setZone(TIMEZONE);
+  // Convertir la fecha inicial a zona horaria de Colombia
+  let current = date.setZone(TIMEZONE);
 
-  // 2) Aproximar hacia ATRÁS al último instante laboral si está fuera del horario
+  // si la hora inicial no está en horario laboral, mover hacia atrás al último instante laboral válido
+  // si la fecha/hora inicial cae un sado/domingo o festivo, o fuera de horario laboral 
+  // se ajusta hacia atrás al último instante laboral válido
   current = moveBackToNearestWorkingTime(current, holidays);
 
   // 3) Primero sumar días hábiles: conservar la hora del current
