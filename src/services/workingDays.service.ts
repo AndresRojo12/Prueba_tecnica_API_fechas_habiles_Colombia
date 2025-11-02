@@ -30,22 +30,20 @@ export async function calculateNextWorkingDate(
   // se ajusta hacia atrás al último instante laboral válido
   current = moveBackToNearestWorkingTime(current, holidays);
 
-  // 3) Primero sumar días hábiles: conservar la hora del current
+  // Primero sumar días hábiles: conservar la hora del current
   if (days > 0) {
     current = addWorkingDaysPreserveTime(current, days, holidays);
   }
 
-  // 4) Luego sumar horas hábiles continuas
+  // Luego sumar horas hábiles continuas
   if (hours > 0) {
     current = addWorkingHours(current, hours, holidays);
   }
 
-  // 5) Convertir a UTC y retornar (sin ms)
+  // 5 Convertir a UTC y retornar (sin ms)
   return current.toUTC().set({ millisecond: 0 });
 }
-
-/* ---------------- Helpers ---------------- */
-
+// Funciones auxiliares
 function isHoliday(dt: DateTime, holidays: string[]): boolean {
   const ymd = dt.toISODate();
   return ymd ? holidays.includes(ymd) : false;

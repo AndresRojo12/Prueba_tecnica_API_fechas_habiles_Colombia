@@ -28,7 +28,7 @@ export const calculateWorkingDate = async (req: Request, res: Response): Promise
       return;
     }
 
-    //mantener en UTC
+    //se mantiene en UTC
     const startDate = date
       ? DateTime.fromISO(date, { zone: 'utc' })
       : DateTime.utc();
