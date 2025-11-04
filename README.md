@@ -17,6 +17,7 @@ Este proyecto implementa un **servicio REST en Node.js + Express + TypeScript** 
 - Luxon (manejo de fechas y zonas horarias)
 - dotenv (variables de entorno)
 - ts-node-dev / nodemon (desarrollo)
+- boom (manejo de errores)
 
 ---
 
@@ -43,9 +44,29 @@ npm start
 
 # El servidor quedara disponible en:
 - https://prueba-tecnica-api-fechas-habiles.onrender.com/
+
+- Ejemplo de prueba en render:
+    - https://prueba-tecnica-api-fechas-habiles.onrender.com/calculate-date?date=2025-04-10T15:00:00Z&days=5&hours=4
+
+- Ejemplo de prueba por falta de parametros:
+    - https://prueba-tecnica-api-fechas-habiles.onrender.com/calculate-date
+    - respuesta:status(400)
+    {
+        "error": "InvalidParameters",
+        "message": "Se deben propocionar los parametros 'days' y/o 'hours'"
+    }
+
+- Ejemplo con ruta mal escrita:
+    https://prueba-tecnica-api-fechas-habiles.onrender.com/calculate-dat
+    - respuesta:status(503)
+    {
+        "error": "ServerError",
+        "message": "Error interno del servidor."
+    }
 # Ruta principal
 
 - /calculate-date
 - ejemplo de solicitud: GET: http://localhost:3001/calculate-date?date=2025-04-10T15:00:00Z&days=5&hours=4
 
 
+```
